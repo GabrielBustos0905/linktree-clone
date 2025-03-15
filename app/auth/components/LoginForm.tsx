@@ -13,11 +13,17 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/FormError";
 import { FormSuccess } from "@/components/FormSuccess";
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export function LoginForm() {
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
+
+    const searchParams = useSearchParams();
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use" : "";
+    const callbackUrl = searchParams.get("callbackUrl")
 
     const form = useForm<z.infer<typeof LoginSchemas>>({
         resolver: zodResolver(LoginSchemas),
@@ -28,13 +34,23 @@ export function LoginForm() {
     });
 
     const onSubmit = (values: z.infer<typeof LoginSchemas>) => {
+        setError("");
+        setSuccess("")
+
         startTransition(() => {
-            login(values)
-                .then((data) => {
-                    setError(data.error);
+            login(values, callbackUrl).then((data) => {
+                if (data?.error) {
+                    form.reset();
+                    setError(data.error)
+                };
+                if (data?.success) {
+                    form.reset();
                     setSuccess(data.success)
-                })
-        })
+                };
+            }).catch(() => {
+                setError("Something went wrong!")
+            })
+        });
     };
 
     return (
@@ -73,11 +89,21 @@ export function LoginForm() {
                                         type="password"
                                     />
                                 </FormControl>
+                                <Button
+                                    size="sm"
+                                    variant="link"
+                                    asChild
+                                    className="px-0 font-normal flex justify-start"
+                                >
+                                    <Link href="/auth/reset-password">
+                                        Forgot password?
+                                    </Link>
+                                </Button>
                                 <FormMessage />
                             </FormItem>
                         )} />
                     </div>
-                    <FormError message={error} />
+                    <FormError message={error || urlError} />
                     <FormSuccess message={success} />
                     <Button type="submit" className="w-full" disabled={isPending}>
                         Login
