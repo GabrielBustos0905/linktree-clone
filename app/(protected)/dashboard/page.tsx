@@ -1,12 +1,15 @@
-import { auth, signOut } from "@/auth";
+// import { auth, signOut } from "@/auth";
+
+import { infoUser } from "@/actions/info-user"
+import { signOut } from "@/auth"
 
 export default async function DashboardPage() {
-    const session = await auth()
+    const user = await infoUser()
 
     return (
         <div>
             {
-                JSON.stringify(session)
+                JSON.stringify(user)
             }
             <form
                 action={async () => {
