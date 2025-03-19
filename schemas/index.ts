@@ -33,3 +33,10 @@ export const NewPasswordSchema = z.object({
         message: "Minimum 6 characters required"
     }),
 });
+
+export const StepFourSchema = z.object({
+    name: z.string(),
+    username: z.string().min(1, {
+        message: "Username is required!"
+    })
+})
