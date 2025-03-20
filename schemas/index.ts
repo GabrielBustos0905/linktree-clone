@@ -39,4 +39,14 @@ export const StepFourSchema = z.object({
     username: z.string().min(1, {
         message: "Username is required!"
     })
-})
+});
+
+export const UpdateInfoSchema = z.object({
+    username: z.string().min(2).max(50),
+    name: z.string().min(2).max(100).optional(),
+    bio: z.string().min(2).max(400).optional(),
+});
+
+export const LinkSchema = z.object({
+    link: z.string().min(2).max(200),
+});

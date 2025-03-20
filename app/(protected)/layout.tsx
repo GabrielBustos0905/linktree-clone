@@ -19,7 +19,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
                     </div>
                 </header>
             </SidebarInset>
-            <main className="w-full">
+            <main className="w-full mt-8">
                 {children}
             </main>
         </SidebarProvider>

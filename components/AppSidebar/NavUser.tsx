@@ -52,8 +52,8 @@ export function NavUser({
             setInfoUser(data);
         };
         fetchData();
-    }, [])
-    // console.log(infoUser)
+    }, []);
+
     return (
         <SidebarMenu>
             <SidebarMenuItem>
