@@ -9,6 +9,7 @@ import { HandlerSteps } from "./components";
 import { LinkProfile } from "./components/LinkProfile";
 import { ProfileInfo } from "./components/ProfileInfo";
 import { ListSocialNetworks } from "./components/ListSocialNetworks";
+import { ProfilePreview } from "./components/ProfilePreview";
 
 export default function DashboardPage() {
     const [isFirstVisit, setIsFirstVisit] = useState(false);
@@ -64,8 +65,7 @@ export default function DashboardPage() {
                         )
                     }
                 </div>
-                {/* <ProfilePreview /> */}
-                <>Profile preview</>
+                <ProfilePreview />
             </div>
         </UserProvider>
     )
