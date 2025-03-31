@@ -17,3 +17,18 @@ export async function infoUser() {
 
     return existingUser;
 }
+
+export async function infoUserByUsername(username: string) {
+    const existingUser = await db.user.findUnique({
+        where: {
+            username
+        },
+        include: {
+            links: true
+        }
+    });
+
+    // if(!existingUser) return { error: "Usuario Inexistente pingo" };
+
+    return existingUser;
+}

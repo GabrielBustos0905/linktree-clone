@@ -8,7 +8,7 @@ export default auth((req) => {
   // req.auth
   const { nextUrl } = req
   const isLoggedIn = !!req.auth
-  console.log(isLoggedIn)
+  console.log({url: nextUrl.pathname})
   
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
@@ -20,7 +20,7 @@ export default auth((req) => {
     if(isLoggedIn) return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
     return
   };
-
+  
   if(!isLoggedIn && !isPublicRoute) {
     let callbackUrl = nextUrl.pathname;
 
