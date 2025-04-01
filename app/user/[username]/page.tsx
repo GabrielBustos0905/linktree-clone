@@ -4,7 +4,7 @@ import Image from "next/image";
 import { UserLinks } from "./components/UserLinks";
 import { TreePalm } from "lucide-react";
 
-export default async function UserPage({ params }: { params: { username: string } }) {
+export default async function UserPage({ params }: { params: Promise<{ username: string }> }) {
     const { username } = await params;
     const user = await infoUserByUsername(username)
 

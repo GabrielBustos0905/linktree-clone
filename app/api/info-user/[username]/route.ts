@@ -1,10 +1,10 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { username: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ username: string }> }) {
     // console.log(params.username)
     try {
-        const username = params.username;
+        const { username} = await params;
 
         if(!username) return NextResponse.json({ message: "Username is Required!"}, { status: 400 });
 

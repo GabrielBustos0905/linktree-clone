@@ -1,7 +1,12 @@
+"use client"
+
+import { Suspense } from "react";
 import { NewVerificationForm } from "../components/NewVerificationForm";
 
 export default function PageNewVerification() {
     return (
-        <NewVerificationForm />
+        <Suspense>
+            <NewVerificationForm />
+        </Suspense>
     )
 }

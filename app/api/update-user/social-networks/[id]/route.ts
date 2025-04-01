@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: {params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: {params: Promise<{ id: string }> }) {
     try {
-        const { id } = params;
+        const { id } = await params;
         const { link } = await req.json();
 
         if(!id || !link) return NextResponse.json({ error: "ID or Link are required"}, { status: 400 });
@@ -29,9 +29,9 @@ export async function PATCH(req: NextRequest, { params }: {params: { id: string 
     }
 };
 
-export async function DELETE(req: Request, { params }: { params: { id: string }}) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }>}) {
     try {
-        const { id } = params;
+        const { id } = await params;
         if(!id) return NextResponse.json(
             {
                 error: "ID is required"
