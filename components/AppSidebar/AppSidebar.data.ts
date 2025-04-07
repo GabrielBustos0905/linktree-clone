@@ -56,15 +56,15 @@ export const data = {
             items: [
                 {
                     title: "Linkedin",
-                    url: "#",
+                    url: "https://www.linkedin.com/in/gabriel-bustos-a0ab8b221",
                 },
                 {
                     title: "Github",
-                    url: "#",
+                    url: "https://github.com/GabrielBustos0905",
                 },
                 {
                     title: "Porfolio",
-                    url: "#",
+                    url: "https://porfolio-web-theta.vercel.app",
                 },
             ],
         },

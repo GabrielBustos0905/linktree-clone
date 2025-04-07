@@ -32,15 +32,7 @@ import { Link, User } from "@prisma/client"
 import { logout } from "@/actions/logout"
 import Image from "next/image"
 
-export function NavUser({
-    user,
-}: {
-    user: {
-        name: string
-        email: string
-        avatar: string
-    }
-}) {
+export function NavUser() {
     const { isMobile } = useSidebar()
 
     const [infoUser, setInfoUser] = useState<(User & { links: Link[] } | null)>(null);
@@ -90,12 +82,12 @@ export function NavUser({
                         <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <Avatar className="h-8 w-8 rounded-lg">
-                                    <AvatarImage src={user.avatar} alt={user.name} />
+                                    <AvatarImage src={infoUser?.image || "/user.webp"} alt="avatar" />
                                     <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
-                                    <span className="truncate font-semibold">{user.name}</span>
-                                    <span className="truncate text-xs">{user.email}</span>
+                                    <span className="truncate font-semibold">{infoUser?.name}</span>
+                                    <span className="truncate text-xs">{infoUser?.email}</span>
                                 </div>
                             </div>
                         </DropdownMenuLabel>
