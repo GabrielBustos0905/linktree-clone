@@ -1,10 +1,10 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const DOMAIN = process.env.NEXT_PUBLIC_APP_URL
+// const DOMAIN = process.env.NEXT_PUBLIC_APP_URL
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-    const confirmLink = `${DOMAIN}/auth/new-verification?token=${token}`;
+    const confirmLink = `https://linktree-clone-flame.vercel.app/auth/new-verification?token=${token}`;
 
     await resend.emails.send({
         from: "onboarding@resend.dev",
@@ -15,7 +15,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-    const resetLink = `${DOMAIN}/auth/new-password?token=${token}`;
+    const resetLink = `https://linktree-clone-flame.vercel.app/auth/new-password?token=${token}`;
 
     await resend.emails.send({
         from: "onboarding@resend.dev",
