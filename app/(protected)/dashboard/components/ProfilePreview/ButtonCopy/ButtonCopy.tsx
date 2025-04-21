@@ -9,7 +9,7 @@ export function ButtonCopy() {
     if (!user) return null;
 
     const copyProfile = () => {
-        const url = `${window.location.origin}/${user.username}`;
+        const url = `${window.location.origin}/user/${user.username}`;
         navigator.clipboard.writeText(url);
         setIsCopied(true);
         setTimeout(() => {
