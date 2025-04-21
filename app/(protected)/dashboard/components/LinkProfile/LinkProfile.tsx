@@ -9,7 +9,7 @@ export function LinkProfile() {
     const { user } = useUser()
 
     const copyLink = () => {
-        const url = `${window.location.origin}/${user?.username}`;
+        const url = `${window.location.origin}/user/${user?.username}`;
 
         navigator.clipboard.writeText(url);
 
